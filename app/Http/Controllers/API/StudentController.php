@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -33,11 +35,28 @@ class StudentController extends Controller
         ]);
     }
 
-    public static function update(){
-        return [];
+    public static function update(Request $request, $id){
+        $student = DB::select(
+            DB::raw("update students set nama = '$request->nama',
+            updated_at = now() where id = '$id' "));
+
+        $updated = Student::find($id);
+
+        return $updated;
     }
 
-    public static function delete(){
-        return [];
+    public static function delete(Request $request, $id){
+        try {
+            $student = Student::destroy($id);
+
+            if ($student) {
+                return "Data Berhasil dihapus";
+            }else{
+                throw new Exception("Tidak ada data dengan id $id");
+            }
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 }

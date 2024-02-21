@@ -23,6 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('student')->group(function () {
     Route::get('all', [StudentController::class, 'all'])->name('apistudent.all');
     Route::post('store', [StudentController::class, 'store'])->name('apistudent.store');
-    Route::put('update', [StudentController::class, 'update'])->name('apistudent.update');
-    Route::delete('delete', [StudentController::class, 'delete'])->name('apistudent.delete');
+    Route::put('update/{id}', [StudentController::class, 'update'])->name('apistudent.update');
+    Route::delete('delete/{id}', [StudentController::class, 'delete'])->name('apistudent.delete');
 });
