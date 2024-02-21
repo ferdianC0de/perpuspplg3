@@ -15,5 +15,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        \App\Models\Kelas::create([
+            'nama' => "XI PPLG 1"
+        ]);
+        \App\Models\Kelas::create([
+            'nama' => "XI PPLG 2"
+        ]);
+        \App\Models\Kelas::create([
+            'nama' => "XI PPLG 3"
+        ]);
+
     }
 }
